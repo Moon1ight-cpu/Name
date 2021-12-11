@@ -1,0 +1,31 @@
+
+
+form {
+  width: 500px;
+  margin: 300px auto 0;
+}
+
+input[type='text'] {
+  margin-right: 20px;
+  width: 300px;
+  padding: 5px 10px;
+}
+
+
+.output,
+.output2 {
+  width: 500px;
+  border-radius: 20px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  margin: 20px auto;
+}
+
+fieldset {
+  border-radius: 20px;
+}
+
+legend {
+  font-size: 16px;
+  font-weight: bold;
+}
