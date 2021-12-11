@@ -12,8 +12,8 @@ input[type='text'] {
 }
 
 
-.output,
-.output2 {
+.gender-output,
+.country-output {
   width: 500px;
   border-radius: 20px;
   padding: 5px 10px;

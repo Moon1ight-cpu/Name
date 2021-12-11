@@ -1,35 +1,35 @@
 const UI = {
     form: document.querySelector('form'),
-    input: document.querySelector('input'),
-    output: document.querySelector('.output'),
-    output2: document.querySelector('.output2')
+    nameInput: document.querySelector('input'),
+    genderOutput: document.querySelector('.gender-output'),
+    countryOutput: document.querySelector('.country-output')
+}
 
+const URLs = {
+    genderServerUrl: 'https://api.genderize.io',
+    countryServerUrl: 'https://api.nationalize.io'
 }
 
 UI.form.addEventListener('submit', function () {
-    const firstName = UI.input.value;
+    const firstName = UI.nameInput.value;
+    const genderRequest = `${URLs.genderServerUrl}?name=${firstName}`;
+    const countryRequest = `${URLs.countryServerUrl}?name=${firstName}`;
 
-    const serverUrl = 'https://api.genderize.io';
-    const urlMy = `${serverUrl}?name=${firstName}`;
-
-    fetch(urlMy)
+    fetch(genderRequest)
         .then(response => response.json())
-        .then(answer => UI.output.textContent = `${answer.name} is ${answer.gender}`);
+        .then(answer => UI.genderOutput.textContent = `${answer.name} is ${answer.gender}`);
 
-    const countryServerUrl = 'https://api.nationalize.io';
-    const urlMy2 = `${countryServerUrl}?name=${firstName}`;
-
-    fetch(urlMy2)
+    fetch(countryRequest)
         .then(response => response.json())
         .then(data2 => {
-            UI.output2.textContent = `${data2.name} from `;
+            UI.countryOutput.textContent = `${data2.name} is from `;
             let countries = data2.country.map(item => item.country_id);
-            countries.forEach(element => {
-                UI.output2.textContent += `${element} or `;
+            countries.forEach(country => {
+                UI.countryOutput.textContent += `${country} or `;
             });
-            UI.output2.textContent = UI.output2.textContent.slice(0, -4);
+            UI.countryOutput.textContent = UI.countryOutput.textContent.slice(0, -4);
         });
 
-    input.value = '';
+    UI.form.reset();
 });
 
