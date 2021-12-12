@@ -21,9 +21,9 @@ UI.form.addEventListener('submit', function () {
 
     fetch(countryRequest)
         .then(response => response.json())
-        .then(data2 => {
-            UI.countryOutput.textContent = `${data2.name} is from `;
-            let countries = data2.country.map(item => item.country_id);
+        .then(answer => {
+            UI.countryOutput.textContent = `${answer.name} is from `;
+            let countries = answer.country.map(item => item.country_id);
             countries.forEach(country => {
                 UI.countryOutput.textContent += `${country} or `;
             });
